@@ -1,0 +1,36 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+{% block titulo %}
+Iniciar Sesión
+{% endblock titulo %}
+{% block css %}
+<link href="{% static 'dist/css/sign-in.css' %}" rel="stylesheet">
+{% endblock css %}
+{% block contenido %}
+<main class="form-signin w-100 m-auto text-center">
+    <form method="POST">
+        {% csrf_token %}
+        <img src="{% static 'img/allpets.png' %}" alt="" width="300" height="120">
+        <h1 class="h3 mb-3 fw-normal">{{ titulo }}</h1>
+        <div class="form-floating">
+            {{ formulario.nombre_usuario }}
+            <label for="{{ formulario.nombre_usuario.id_for_label }}">
+                {{ formulario.nombre_usuario.label}}
+            </label>
+        </div>
+        <div class="form-floating">
+            {{ formulario.contrasenia_usuario}}
+            <label for="{{ formulario.contrasenia_usuario.id_for_label }}">
+                {{ formulario.contrasenia_usuario.label }}
+            </label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                {{ formulario.recuerdame }} {{ formulario.recuerdame.label}}
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
+    </form>
+</main>
+{% endblock %}

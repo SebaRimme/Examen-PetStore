@@ -1,0 +1,36 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+{% block titulo %}
+Pago
+{% endblock titulo %}
+{% block css %}
+{% endblock css %}
+{% block contenido %}
+{% load humanize %}
+<main>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="row" colspan="4" class="text-center">PAGO REALIZADO: {{ user.username }}</th>
+          </tr>
+          <tr>
+            <th scope="col">NOMBRE JUEGO</th>
+            <th scope="col">PRECIO</th>
+            <th scope="col">ACUMULADO</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for key, value in request.session.carrito.items %}
+          <tr>
+            <td>{{value.nombre}}</td>
+            <td>${{value.acumulado | intcomma}}</td>
+            <td>{{value.cantidad}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+        {% include 'padre/footer.html' %}
+</main>
+{% endblock contenido %}
+{% block footer %}
+{% endblock footer %}
